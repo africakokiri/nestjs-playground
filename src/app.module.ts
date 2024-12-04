@@ -3,6 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
+import { UserModule } from './user/user.module';
+import { UserModel } from 'src/user/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,9 +19,11 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
       username: 'kokiri',
       password: 'kokiri',
       database: 'kokiri',
-      entities: [],
+      entities: [UserModel],
       synchronize: true,
     }),
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
